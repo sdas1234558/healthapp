@@ -18,11 +18,13 @@ export async function getAITriage(prevState: any, formData: FormData) {
     };
   }
 
+  const { symptoms } = validatedFields.data;
+
   try {
     const result = await aiSymptomTriage({
-      symptoms: validatedFields.data.symptoms,
+      symptoms,
     });
-    return { data: result };
+    return { data: result, symptoms };
   } catch (error) {
     console.error(error);
     return {

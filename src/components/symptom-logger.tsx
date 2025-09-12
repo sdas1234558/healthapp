@@ -59,19 +59,16 @@ function SubmitButton() {
   );
 }
 
-const TriageResult = ({ data }: { data: any }) => {
+const TriageResult = ({ data, symptoms }: { data: any, symptoms: string }) => {
   const [tips, setTips] = useState<PersonalizedHealthTipsOutput | null>(null);
   const [loadingTips, setLoadingTips] = useState(false);
 
   useEffect(() => {
-    if (data) {
+    if (data && symptoms) {
       setLoadingTips(true);
       const riskAssessment = `Risk Score: ${data.riskScore.toFixed(
         2
       )}, Suggestion: ${data.suggestedNextStep}, Rationale: ${data.rationale}`;
-      
-      const symptomsElement = document.getElementById('symptoms') as HTMLTextAreaElement;
-      const symptoms = symptomsElement ? symptomsElement.value : 'N/A';
 
       getPersonalizedHealthTips({
         symptoms,
@@ -84,7 +81,7 @@ const TriageResult = ({ data }: { data: any }) => {
         setLoadingTips(false);
       })
     }
-  }, [data]);
+  }, [data, symptoms]);
 
   const riskScorePercentage = data.riskScore * 100;
   let riskColor = 'bg-green-500';
@@ -129,7 +126,7 @@ const TriageResult = ({ data }: { data: any }) => {
         <CardContent className="space-y-4">
           <div>
             <Label>Risk Score</Label>
-            <Progress value={riskScorePercentage} indicatorClassName={riskColor} />
+            <Progress value={riskScorePercentage} className={riskColor} />
             <p className="text-sm text-muted-foreground mt-1">
               Your risk score is {riskScorePercentage.toFixed(0)}/100.
             </p>
@@ -222,7 +219,7 @@ export function SymptomLogger() {
 
       <div>
         {state?.data ? (
-          <TriageResult data={state.data} />
+          <TriageResult data={state.data} symptoms={state.symptoms} />
         ) : (
           <div className="h-full flex flex-col items-center justify-center rounded-lg border border-dashed text-center p-8">
             <HeartPulse className="h-12 w-12 text-muted-foreground" />

@@ -19,7 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { PlusCircle, Trash2 } from 'lucide-react';
+import { PlusCircle, Trash2, Pill } from 'lucide-react';
 import type { Medication } from '@/lib/types';
 import { mockMedications } from '@/lib/data';
 

@@ -1,0 +1,16 @@
+diff --git a/node_modules/chokidar/lib/nodefs-handler.js b/node_modules/chokidar/lib/nodefs-handler.js
+index 738a53e..24c472d 100644
+--- a/node_modules/chokidar/lib/nodefs-handler.js
++++ b/node_modules/chokidar/lib/nodefs-handler.js
+@@ -23,6 +23,10 @@
+ const {ReadStream} = fs;
+ const {stat, lstat, readdir, readlink, realpath, unlink, rmdir} = fs.promises;
+ 
++if (process.platform === 'win32') {
++  process.env.CHOKIDAR_USEPOLLING = true;
++}
++
+ // fs.watch helpers
+ const_watch_options = Object.freeze({
+   persistent: true,
+

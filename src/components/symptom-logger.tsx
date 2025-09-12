@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import {
   AlertCircle,
   HeartPulse,
@@ -33,7 +33,7 @@ import { Textarea } from './ui/textarea';
 import { Progress } from './ui/progress';
 import { Alert, AlertDescription, AlertTitle } from './ui/alert';
 import { Badge } from './ui/badge';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useActionState } from 'react';
 import { getPersonalizedHealthTips } from '@/ai/flows/personalized-health-tips';
 import type { PersonalizedHealthTipsOutput } from '@/ai/flows/personalized-health-tips';
 
@@ -173,7 +173,7 @@ const TriageResult = ({ data }: { data: any }) => {
 };
 
 export function SymptomLogger() {
-  const [state, formAction] = useFormState(getAITriage, initialState);
+  const [state, formAction] = useActionState(getAITriage, initialState);
 
   return (
     <div className="grid gap-8 md:grid-cols-2">

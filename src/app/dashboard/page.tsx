@@ -1,4 +1,8 @@
+
+'use client';
+
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import {
   ArrowUpRight,
   Bell,
@@ -18,13 +22,15 @@ import { mockMedications } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 
 export default function DashboardPage() {
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name') || 'Jane';
   const nextMedication = mockMedications[0];
 
   return (
     <div className="flex flex-col gap-6">
       <div className="space-y-1">
         <h1 className="text-3xl font-bold tracking-tight">
-          Good morning, Jane
+          Good morning, {name}
         </h1>
         <p className="text-muted-foreground">
           Here&apos;s your health summary for today.

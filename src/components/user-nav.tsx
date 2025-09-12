@@ -1,4 +1,8 @@
+
+'use client';
+
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { CircleUser, LogOut, Settings } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -13,12 +17,16 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export function UserNav() {
+  const searchParams = useSearchParams();
+  const name = searchParams.get('name') || 'Jane Doe';
+  const email = searchParams.get('email') || 'jane.doe@example.com';
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="https://picsum.photos/seed/user-avatar/100" />
+            <AvatarImage src={`https://picsum.photos/seed/${name}/100`} />
             <AvatarFallback>
               <CircleUser />
             </AvatarFallback>
@@ -28,9 +36,9 @@ export function UserNav() {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Jane Doe</p>
+            <p className="text-sm font-medium leading-none">{name}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              jane.doe@example.com
+              {email}
             </p>
           </div>
         </DropdownMenuLabel>

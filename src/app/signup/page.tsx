@@ -1,5 +1,9 @@
+
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -16,6 +20,9 @@ import { placeholderImages } from '@/lib/placeholder-images.json';
 
 export default function SignupPage() {
   const loginBg = placeholderImages.find((img) => img.id === 'login-background');
+  const [firstName, setFirstName] = useState('Jane');
+  const [email, setEmail] = useState('jane.doe@example.com');
+
 
   return (
     <div className="w-full h-screen lg:grid lg:grid-cols-2">
@@ -33,7 +40,13 @@ export default function SignupPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="first-name">First name</Label>
-                  <Input id="first-name" placeholder="Jane" required />
+                  <Input
+                    id="first-name"
+                    placeholder="Jane"
+                    required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="last-name">Last name</Label>
@@ -47,6 +60,8 @@ export default function SignupPage() {
                   type="email"
                   placeholder="m@example.com"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="grid gap-2">
@@ -54,7 +69,7 @@ export default function SignupPage() {
                 <Input id="password" type="password" />
               </div>
               <Button asChild type="submit" className="w-full">
-                <Link href="/dashboard">Create an account</Link>
+                <Link href={`/dashboard?name=${firstName}&email=${email}`}>Create an account</Link>
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">

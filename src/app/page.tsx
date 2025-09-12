@@ -1,5 +1,9 @@
+
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -16,6 +20,15 @@ import { placeholderImages } from '@/lib/placeholder-images.json';
 
 export default function LoginPage() {
   const loginBg = placeholderImages.find((img) => img.id === 'login-background');
+  const [email, setEmail] = useState('');
+
+  const getNameFromEmail = (email: string) => {
+    if (!email || !email.includes('@')) {
+      return 'User';
+    }
+    const namePart = email.split('@')[0];
+    return namePart.charAt(0).toUpperCase() + namePart.slice(1);
+  };
 
   return (
     <div className="w-full h-screen lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
@@ -37,6 +50,8 @@ export default function LoginPage() {
                   type="email"
                   placeholder="m@example.com"
                   required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="grid gap-2">
@@ -52,7 +67,7 @@ export default function LoginPage() {
                 <Input id="password" type="password" required />
               </div>
               <Button asChild type="submit" className="w-full">
-                <Link href="/dashboard">Login</Link>
+                <Link href={`/dashboard?name=${getNameFromEmail(email)}&email=${email}`}>Login</Link>
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">

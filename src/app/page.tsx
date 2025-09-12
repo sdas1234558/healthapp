@@ -20,7 +20,7 @@ export default function LoginPage() {
   return (
     <div className="w-full h-screen lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
-        <Card className="mx-auto max-w-sm w-full">
+        <Card className="mx-auto max-w-sm w-full shadow-lg">
           <CardHeader className="space-y-4 text-center">
             <Logo className="mx-auto" />
             <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>

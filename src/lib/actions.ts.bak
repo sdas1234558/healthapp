@@ -1,0 +1,46 @@
+'use serveexport async function getAITriage(formData: FormData): Promise<TriageState> {
+  const validatedFields = triageSchema.safeParse({
+    symptoms: formData.get('symptoms'),
+    severity: formData.get('severity'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  const { symptoms, severity } = validatedFields.data; aiSymptomTriage } from '@/ai/flows/ai-symptom-triage';
+import { z } from 'zod';
+
+const triageSchema = z.object({
+  symptoms: z.string().min(10, 'Please provide a more detailed description.'),
+  severity: z.enum(['Mild', 'Moderate', 'Severe']),
+});
+
+export async function getAITriage(formData: FormData) {
+  const validatedFields = triageSchema.safeParse({
+    symptoms: formData.get('symptoms'),
+    severity: formData.get('severity'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      error: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  const { symptoms, severity } = validatedFields.data;
+
+  try {
+    const result = await aiSymptomTriage({
+      symptoms,
+    });
+    return { data: result, symptoms, severity };
+  } catch (error) {
+    console.error(error);
+    return {
+      error: 'An error occurred while getting AI triage. Please try again.',
+    };
+  }
+}

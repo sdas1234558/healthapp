@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/ui/theme-provider';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { UserProvider } from '@/contexts/user-context';
 import { SymptomsProvider } from '@/contexts/symptoms-context';
+import { PathologyProvider } from '@/contexts/pathology-context';
 
 export const metadata: Metadata = {
   title: 'HealthCheck',
@@ -31,13 +32,15 @@ export default function RootLayout({
         <ThemeProvider>
           <UserProvider>
             <SymptomsProvider>
-              <div className="relative min-h-screen">
-                <div className="absolute right-4 top-4 z-50">
-                  <ThemeToggle />
+              <PathologyProvider>
+                <div className="relative min-h-screen">
+                  <div className="absolute right-4 top-4 z-50">
+                    <ThemeToggle />
+                  </div>
+                  {children}
+                  <Toaster />
                 </div>
-                {children}
-                <Toaster />
-              </div>
+              </PathologyProvider>
             </SymptomsProvider>
           </UserProvider>
         </ThemeProvider>

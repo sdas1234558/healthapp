@@ -8,6 +8,7 @@ import {
   HeartPulse,
   Lightbulb,
   Pill,
+  TestTube2,
 } from 'lucide-react';
 import { useUser } from '@/contexts/user-context';
 import { Button } from '@/components/ui/button';
@@ -72,6 +73,25 @@ export default function DashboardPage() {
             </Button>
           </CardContent>
         </Card>
+
+        <Card className="shadow-sm hover:shadow-md transition-shadow">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Lab Tests</CardTitle>
+            <TestTube2 className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">
+              Book diagnostic tests at nearby labs.
+            </p>
+            <Button asChild size="sm">
+              <Link href="/dashboard/labs">
+                Find Labs
+                <ArrowUpRight className="h-4 w-4 ml-2" />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+
         <Card className="shadow-sm hover:shadow-md transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Reminders</CardTitle>

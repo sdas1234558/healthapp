@@ -78,11 +78,14 @@ export default function SymptomsPage() {
                       <TableCell>
                         {format(symptom.onset, 'MMM d, yyyy')}
                       </TableCell>
-                      <TableCell className="max-w-xs truncate">
+                      <TableCell 
+                        className="max-w-xs truncate hover:text-clip hover:whitespace-normal hover:cursor-pointer hover:text-primary transition-all duration-200"
+                        title={symptom.symptoms}
+                      >
                         {symptom.symptoms}
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline">{symptom.severity}</Badge>
+                        <Badge variant="outline" className="hover:opacity-80 transition-opacity duration-200">{symptom.severity}</Badge>
                       </TableCell>
                       <TableCell>
                         {symptom.triage && (

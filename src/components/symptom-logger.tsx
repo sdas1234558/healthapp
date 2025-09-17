@@ -149,32 +149,35 @@ const TriageResult = ({ data, symptoms, severity }: { data: TriageData, symptoms
           <div>
             <Label>Risk Score</Label>
             <Progress value={riskScorePercentage} className={riskColor} />
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground mt-1 hover:text-foreground transition-colors duration-200">
               Your risk score is {riskScorePercentage.toFixed(0)}/100.
             </p>
           </div>
           <div>
             <Label>Suggested Next Step</Label>
             <div className="flex items-center gap-2 mt-1">
-              <Badge variant={nextStepInfo.variant as any}>
+              <Badge 
+                variant={nextStepInfo.variant as any}
+                className="hover:scale-105 transition-transform duration-200"
+              >
                 <NextStepIcon className="h-4 w-4 mr-1" />
                 {nextStepInfo.label}
               </Badge>
             </div>
           </div>
-          <Alert>
+          <Alert className="hover:bg-muted/50 transition-colors duration-200">
             <Info className="h-4 w-4" />
-            <AlertTitle>Rationale</AlertTitle>
-            <AlertDescription>{data.rationale}</AlertDescription>
+            <AlertTitle className="hover:text-primary transition-colors duration-200">Rationale</AlertTitle>
+            <AlertDescription className="hover:text-foreground transition-colors duration-200">{data.rationale}</AlertDescription>
           </Alert>
         </CardContent>
       </Card>
       
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Lightbulb className="h-5 w-5" />
-            Personalized Tips
+          <CardTitle className="flex items-center gap-2 group cursor-pointer">
+            <Lightbulb className="h-5 w-5 group-hover:text-primary transition-colors duration-200" />
+            <span className="group-hover:text-primary transition-colors duration-200">Personalized Tips</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -184,7 +187,7 @@ const TriageResult = ({ data, symptoms, severity }: { data: TriageData, symptoms
               <span>Generating personalized tips...</span>
             </div>
           )}
-          {tips && <p className="text-sm">{tips.tips}</p>}
+          {tips && <p className="text-sm hover:text-foreground transition-colors duration-200 cursor-default">{tips.tips}</p>}
         </CardContent>
       </Card>
     </div>
@@ -259,12 +262,12 @@ export function SymptomLogger() {
           <TriageResult data={state.data} symptoms={state.symptoms} severity={state.severity} />
         ) : (
           <>
-            <div className="h-full flex flex-col items-center justify-center rounded-lg border border-dashed text-center p-8">
-              <HeartPulse className="h-12 w-12 text-muted-foreground" />
-              <h3 className="text-lg font-semibold mt-4">
+            <div className="h-full flex flex-col items-center justify-center rounded-lg border border-dashed text-center p-8 group hover:border-primary transition-colors duration-200">
+              <HeartPulse className="h-12 w-12 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+              <h3 className="text-lg font-semibold mt-4 group-hover:text-primary transition-colors duration-200">
                 Your AI triage results will appear here.
               </h3>
-              <p className="text-sm text-muted-foreground mt-2">
+              <p className="text-sm text-muted-foreground mt-2 group-hover:text-muted-foreground/80 transition-colors duration-200">
                 Fill out the form to get started.
               </p>
             </div>

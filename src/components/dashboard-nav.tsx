@@ -6,6 +6,7 @@ import {
   HeartPulse,
   LayoutDashboard,
   Pill,
+  TestTube2,
 } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import {
@@ -23,6 +24,7 @@ const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/symptoms', label: 'Symptom Logger', icon: HeartPulse },
   { href: '/dashboard/medications', label: 'Medications', icon: Pill },
+  { href: '/dashboard/labs', label: 'Lab Tests', icon: TestTube2 },
 ];
 
 export function DashboardNav() {

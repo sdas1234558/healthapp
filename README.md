@@ -1,7 +1,2 @@
-
-
-This is a NextJS starter
-
-To get started, take a look at src/app/page.tsx.
 # hackathon
-# hackathon
+Tried to develop a Mdeical Dashboard for patients with salient feautures and an ai health assistant using gemini api 

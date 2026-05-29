@@ -1,0 +1,11 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "login-background",
+      "description": "A calm and soothing abstract background with pastel colors.",
+      "imageUrl": "https://picsum.photos/seed/health-login/1920/1080",
+      "imageHint": "calm abstract"
+    }
+  ]
+}

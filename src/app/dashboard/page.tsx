@@ -1,7 +1,7 @@
-
 'use client';
 
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   ArrowUpRight,
@@ -21,7 +21,7 @@ import {
 import { mockMedications } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 
-export default function DashboardPage() {
+function DashboardContent() {
   const searchParams = useSearchParams();
   const name = searchParams.get('name') || 'Jane';
   const nextMedication = mockMedications[0];
@@ -106,5 +106,24 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex flex-col gap-6">
+          <div className="space-y-1">
+            <h1 className="text-3xl font-bold tracking-tight">Good morning</h1>
+            <p className="text-muted-foreground">
+              Here&apos;s your health summary for today.
+            </p>
+          </div>
+        </div>
+      }
+    >
+      <DashboardContent />
+    </Suspense>
   );
 }

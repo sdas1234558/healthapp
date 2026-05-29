@@ -16,10 +16,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Logo } from '@/components/logo';
-import { placeholderImages } from '@/lib/placeholder-images.json';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function SignupPage() {
-  const loginBg = placeholderImages.find((img) => img.id === 'login-background');
+  const loginBg = PlaceHolderImages.find((img) => img.id === 'login-background');
   const [firstName, setFirstName] = useState('Jane');
   const [email, setEmail] = useState('jane.doe@example.com');
 

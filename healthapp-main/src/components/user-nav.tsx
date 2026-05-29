@@ -1,7 +1,7 @@
-
 'use client';
 
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CircleUser, LogOut, Settings } from 'lucide-react';
 
@@ -16,7 +16,19 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-export function UserNav() {
+function UserNavFallback() {
+  return (
+    <Button variant="ghost" size="icon" className="rounded-full">
+      <Avatar className="h-8 w-8">
+        <AvatarFallback>
+          <CircleUser />
+        </AvatarFallback>
+      </Avatar>
+    </Button>
+  );
+}
+
+function UserNavContent() {
   const searchParams = useSearchParams();
   const name = searchParams.get('name') || 'Jane Doe';
   const email = searchParams.get('email') || 'jane.doe@example.com';
@@ -56,5 +68,13 @@ export function UserNav() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+export function UserNav() {
+  return (
+    <Suspense fallback={<UserNavFallback />}>
+      <UserNavContent />
+    </Suspense>
   );
 }
